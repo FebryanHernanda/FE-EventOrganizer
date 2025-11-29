@@ -29,7 +29,7 @@ const ActivationSuccess = () => {
         </p>
 
         <Button
-          className="mt-4 w-fit"
+          className="font-semibold text-danger-500"
           variant="bordered"
           color="danger"
           onClick={() => router.push("/")}

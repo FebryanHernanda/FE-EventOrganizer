@@ -1,21 +1,24 @@
-import { Button, Input } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { Button, Card, CardBody, Input, Spinner } from "@nextui-org/react";
+import Link from "next/link";
 import useResendActivation from "../hooks/useResendEmail";
 import { Controller } from "react-hook-form";
 
-const ActivationFailed = () => {
+const NotActivatedView = () => {
   const router = useRouter();
+  const emailQuery = router.query.email as string;
 
   const {
     control,
-    register,
     handleSubmit,
     handleResend,
     errors,
     isPendingResend,
     isSuccess,
   } = useResendActivation();
+
+  const defaultEmail = emailQuery ?? "";
 
   return (
     <div className="flex w-screen flex-col items-center justify-center gap-10 p-5">
@@ -35,11 +38,10 @@ const ActivationFailed = () => {
       </div>
       <div className="flex flex-col items-center gap-5 text-center">
         <h1 className="text-3xl font-bold text-danger-500">
-          Activation Account Failed!
+          Account Not Activated
         </h1>
         <p className="font-regular text-xl text-default-500">
-          Your activation link is invalid or expired.
-          <br /> Enter your email to resend the activation link.
+          We sent an activation link to your email.
         </p>
 
         <form
@@ -63,12 +65,13 @@ const ActivationFailed = () => {
           <Controller
             name="email"
             control={control}
+            defaultValue={defaultEmail}
             render={({ field }) => (
               <Input
                 {...field}
                 type="email"
                 placeholder="Enter your email"
-                {...register("email")}
+                autoComplete="off"
               />
             )}
           />
@@ -81,10 +84,20 @@ const ActivationFailed = () => {
           >
             {isPendingResend ? "Sending..." : "Resend Activation Email"}
           </Button>
+
+          <Button
+            type="button"
+            variant="bordered"
+            color="danger"
+            className="font-semibold text-danger-500"
+            onPress={() => router.push("/auth/login")}
+          >
+            Back to Login
+          </Button>
         </form>
       </div>
     </div>
   );
 };
 
-export default ActivationFailed;
+export default NotActivatedView;

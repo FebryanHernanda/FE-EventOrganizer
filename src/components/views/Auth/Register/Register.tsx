@@ -15,6 +15,7 @@ const Register = () => {
     handleRegister,
     isPendingRegister,
     errors,
+    clearErrors,
   } = useRegister();
 
   return (
@@ -45,7 +46,7 @@ const Register = () => {
             </Link>
           </p>
           {errors.root && (
-            <p className="mb-2 text-center font-medium text-danger">
+            <p className="font-regular mb-2 text-center text-sm text-danger">
               {errors?.root?.message}
             </p>
           )}
@@ -68,6 +69,10 @@ const Register = () => {
                   autoComplete="off"
                   isInvalid={errors.fullName !== undefined}
                   errorMessage={errors.fullName?.message}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    clearErrors("root");
+                  }}
                 />
               )}
             />
@@ -83,6 +88,10 @@ const Register = () => {
                   autoComplete="off"
                   isInvalid={errors.username !== undefined}
                   errorMessage={errors.username?.message}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    clearErrors("root");
+                  }}
                 />
               )}
             />
@@ -98,6 +107,10 @@ const Register = () => {
                   autoComplete="off"
                   isInvalid={errors.email !== undefined}
                   errorMessage={errors.email?.message}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    clearErrors("root");
+                  }}
                 />
               )}
             />
@@ -126,6 +139,10 @@ const Register = () => {
                   }
                   isInvalid={errors.password !== undefined}
                   errorMessage={errors.password?.message}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    clearErrors("root");
+                  }}
                 />
               )}
             />
@@ -154,6 +171,10 @@ const Register = () => {
                   }
                   isInvalid={errors.confirmPassword !== undefined}
                   errorMessage={errors.confirmPassword?.message}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    clearErrors("root");
+                  }}
                 />
               )}
             />

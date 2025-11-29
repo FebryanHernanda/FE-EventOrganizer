@@ -42,8 +42,10 @@ const useRegister = () => {
     formState: { errors },
     reset,
     setError,
+    clearErrors,
   } = useForm({
     resolver: yupResolver(registerSchema),
+    mode: "onChange",
   });
 
   const registerService = async (payload: IRegister) => {
@@ -77,6 +79,7 @@ const useRegister = () => {
     handleRegister,
     isPendingRegister,
     errors,
+    clearErrors,
   };
 };
 

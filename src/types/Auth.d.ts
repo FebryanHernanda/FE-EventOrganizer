@@ -6,8 +6,13 @@ interface IRegister {
   confirmPassword: string;
 }
 
+interface ILogin {
+  identifier: string;
+  password: string;
+}
+
 interface IResendActivation {
   email: string;
 }
 
-export type { IRegister, IResendActivation };
+export type { IRegister, ILogin, IResendActivation };
