@@ -2,9 +2,9 @@ import { Button, Card, CardBody, Input, Spinner } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import useRegister from "./hooks/useRegister";
 import { Controller } from "react-hook-form";
 import { cn } from "@/utils/cn";
+import useRegister from "./hooks/useRegister";
 
 const Register = () => {
   const {

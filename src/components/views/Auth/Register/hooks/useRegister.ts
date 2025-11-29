@@ -53,10 +53,13 @@ const useRegister = () => {
 
   const { mutate: mutateRegister, isPending: isPendingRegister } = useMutation({
     mutationFn: registerService,
-    onError(error) {
-      setError("root", {
-        message: error.message,
-      });
+    onError: (error: any) => {
+      const message =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        "Something went wrong";
+
+      setError("root", { message });
     },
     onSuccess: () => {
       router.push("/auth/register/success");
